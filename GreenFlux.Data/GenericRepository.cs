@@ -36,9 +36,9 @@ namespace GreenFlux.Data
            return result.Entity;
         }
 
-        public Task<int> SaveChangesAsync()
+        public async Task<int> SaveChangesAsync()
         {
-            return Context.SaveChangesAsync();
+            return await Context.SaveChangesAsync();
         }
     }
 }

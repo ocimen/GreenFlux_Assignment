@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using GreenFlux.Api.Models;
 using GreenFlux.Domain;
 using Moq;
@@ -26,7 +27,7 @@ namespace GreenFlux.Service.UnitTests
         }
 
         [Fact]
-        public async void Should_Suggest_Exact_Match()
+        public async Task Should_Suggest_Exact_Match()
         {
             var connectors = new List<int> {5, 10, 5};
 
@@ -36,7 +37,7 @@ namespace GreenFlux.Service.UnitTests
         }
 
         [Fact]
-        public async void Should_Suggest_Connector_Pairs()
+        public async Task Should_Suggest_Connector_Pairs()
         {
             var connectors = new List<int> { 5, 20, 5 };
 

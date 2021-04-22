@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using GreenFlux.Api.Models.RequestModels;
 using GreenFlux.Data;
 using GreenFlux.Domain;
@@ -31,7 +32,7 @@ namespace GreenFlux.Service.UnitTests
         }
 
         [Fact]
-        public async void Should_Get_All_Connectors_By_Charge_Station()
+        public async Task Should_Get_All_Connectors_By_Charge_Station()
         {
             var result = await _connectorService.GetAllConnectorsByChargeStation(_group.Id, _chargeStation.Id);
 
@@ -42,7 +43,7 @@ namespace GreenFlux.Service.UnitTests
         }
 
         [Fact]
-        public async void Should_Get_Connector_Detail()
+        public async Task Should_Get_Connector_Detail()
         {
             var connectorId = 1;
             var connector = _chargeStation.Connectors.FirstOrDefault(f => f.Id == connectorId);
@@ -54,7 +55,7 @@ namespace GreenFlux.Service.UnitTests
         }
 
         [Fact]
-        public async void Should_Add_Connector()
+        public async Task Should_Add_Connector()
         {
             var createConnector = new CreateConnector {MaxCurrent = 3};
             var result = await _connectorService.AddConnector(_group.Id, _chargeStation.Id, createConnector);
@@ -64,14 +65,14 @@ namespace GreenFlux.Service.UnitTests
         }
 
         [Fact]
-        public async void Should_Not_Add_Connector_If_Group_Capacity_Exceeds()
+        public async Task Should_Not_Add_Connector_If_Group_Capacity_Exceeds()
         {
             var createConnector = new CreateConnector { MaxCurrent = _group.Capacity };
             await Assert.ThrowsAsync<GroupCapacityExceedsException>(() => _connectorService.AddConnector(_group.Id, _chargeStation.Id, createConnector));
         }
 
         [Fact]
-        public async void Should_Not_Add_More_Than_Max_Connector()
+        public async Task Should_Not_Add_More_Than_Max_Connector()
         {
             var createConnector = new CreateConnector { MaxCurrent = 1 };
 
@@ -100,7 +101,7 @@ namespace GreenFlux.Service.UnitTests
         }
 
         [Fact]
-        public async void Should_Update_Connector()
+        public async Task Should_Update_Connector()
         {
             var connectorId = 1;
             var updateConnector = new UpdateConnector {MaxCurrent = 2};
@@ -111,7 +112,7 @@ namespace GreenFlux.Service.UnitTests
         }
 
         [Fact]
-        public async void Should_Throw_Exception_If_Updated_Connector_Capacity_Exceeds_Group_Capacity()
+        public async Task Should_Throw_Exception_If_Updated_Connector_Capacity_Exceeds_Group_Capacity()
         {
             var connectorId = 1;
             var updateConnector = new UpdateConnector { MaxCurrent = 20 };

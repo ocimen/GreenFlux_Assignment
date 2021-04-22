@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using GreenFlux.Api.Models.RequestModels;
 using GreenFlux.Data;
 using GreenFlux.Domain;
@@ -27,7 +28,7 @@ namespace GreenFlux.Service.UnitTests
         }
 
         [Fact]
-        public async void Should_Create_Group()
+        public async Task Should_Create_Group()
         {
             mockGroupRepository.Setup(s => s.Add(It.IsAny<Group>())).Returns(1);
             mockGroupRepository.Setup(s => s.SaveChangesAsync()).ReturnsAsync(1);
@@ -42,7 +43,7 @@ namespace GreenFlux.Service.UnitTests
         }
 
         [Fact]
-        public async void Should_Throw_Exception_If_Create_Group_Fails()
+        public async Task Should_Throw_Exception_If_Create_Group_Fails()
         {
             mockGroupRepository.Setup(s => s.Add(It.IsAny<Group>())).Returns(1);
             mockGroupRepository.Setup(s => s.SaveChangesAsync()).ReturnsAsync(0);
@@ -66,7 +67,7 @@ namespace GreenFlux.Service.UnitTests
         }
 
         [Fact]
-        public async void Should_Get_Specific_Group()
+        public async Task Should_Get_Specific_Group()
         {
             var group = GetGroup();
             mockGroupRepository.Setup(s => s.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync(group);
@@ -79,7 +80,7 @@ namespace GreenFlux.Service.UnitTests
         }
 
         [Fact]
-        public async void Should_Not_Found_Specific_Group()
+        public async Task Should_Not_Found_Specific_Group()
         {
             mockGroupRepository.Setup(s => s.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync((Group)null);
             var result = await _groupService.GetByIdAsync(Guid.NewGuid());
@@ -88,7 +89,7 @@ namespace GreenFlux.Service.UnitTests
         }
 
         [Fact]
-        public async void Should_Update_Group_Name()
+        public async Task Should_Update_Group_Name()
         {
             var group = GetGroup();
             var updateGroup = new UpdateGroup{Name = "Updated Name"};
@@ -101,7 +102,7 @@ namespace GreenFlux.Service.UnitTests
         }
 
         [Fact]
-        public async void Should_Update_Group_Capacity()
+        public async Task Should_Update_Group_Capacity()
         {
             var group = GetGroup();
             var updateGroup = new UpdateGroup { Capacity = 15};
@@ -114,7 +115,7 @@ namespace GreenFlux.Service.UnitTests
         }
 
         [Fact]
-        public async void Should_Remove_Specific_Group()
+        public async Task Should_Remove_Specific_Group()
         {
             var group = GetGroup();
             mockGroupRepository.Setup(s => s.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync(group);
@@ -127,7 +128,7 @@ namespace GreenFlux.Service.UnitTests
         }
 
         [Fact]
-        public async void Should_Throw_Exception_If_Remove_Group_Fails()
+        public async Task Should_Throw_Exception_If_Remove_Group_Fails()
         {
             mockGroupRepository.Setup(s => s.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync((Group)null);
             

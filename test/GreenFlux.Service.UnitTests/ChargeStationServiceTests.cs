@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using GreenFlux.Api.Models.RequestModels;
 using GreenFlux.Data;
 using GreenFlux.Domain;
@@ -31,7 +32,7 @@ namespace GreenFlux.Service.UnitTests
         }
 
         [Fact]
-        public async void Should_GetAllChargeStationsByGroup()
+        public async Task Should_GetAllChargeStationsByGroup()
         {
             var result = await _chargeStationService.GetAllChargeStationsByGroup(_group.Id);
 
@@ -41,7 +42,7 @@ namespace GreenFlux.Service.UnitTests
         }
 
         [Fact]
-        public async void Should_Throw_Exception_If_Group_Not_Exists()
+        public async Task Should_Throw_Exception_If_Group_Not_Exists()
         {
             mockGroupRepository.Setup(s => s.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync((Group)null);
 
@@ -49,7 +50,7 @@ namespace GreenFlux.Service.UnitTests
         }
 
         [Fact]
-        public async void Should_Get_Specific_Charge_Station_Detail()
+        public async Task Should_Get_Specific_Charge_Station_Detail()
         {
             var chargeStationId =_group.ChargeStations.FirstOrDefault().Id;
             mockGroupRepository.Setup(s => s.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync(_group);
@@ -61,7 +62,7 @@ namespace GreenFlux.Service.UnitTests
         }
 
         [Fact]
-        public async void Should__If_Charge_Station_Not_Exists()
+        public async Task Should__If_Charge_Station_Not_Exists()
         {
             mockGroupRepository.Setup(s => s.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync(_group);
 
@@ -98,7 +99,7 @@ namespace GreenFlux.Service.UnitTests
         }
 
         [Fact]
-        public async void Should_Remove_All_Charge_Station_By_Group()
+        public void Should_Remove_All_Charge_Station_By_Group()
         {
             _chargeStationService.RemoveAllChargeStationsByGroup(_group.Id);
 
@@ -107,7 +108,7 @@ namespace GreenFlux.Service.UnitTests
         }
 
         [Fact]
-        public async void Should_Update_Charge_Station()
+        public async Task Should_Update_Charge_Station()
         {
             var updateChargeStation = new UpdateChargeStation {Name = "Updated Station"};
             var updated = await _chargeStationService.Update(_group.Id, _group.ChargeStations.FirstOrDefault().Id, updateChargeStation);

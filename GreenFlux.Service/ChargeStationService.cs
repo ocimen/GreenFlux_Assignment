@@ -47,7 +47,7 @@ namespace GreenFlux.Service
             return _mapper.Map<ChargeStationModel>(chargeStation);
         }
 
-        public async void Remove(Guid groupId, Guid chargeStationId)
+        public async Task Remove(Guid groupId, Guid chargeStationId)
         {
             var group = await GetGroup(groupId);
             group.RemoveChargeStation(chargeStationId);
@@ -55,7 +55,7 @@ namespace GreenFlux.Service
             _logger.LogInformation($"Charge station with {chargeStationId} was removed from the group");
         }
 
-        public async void RemoveAllChargeStationsByGroup(Guid groupId)
+        public async Task RemoveAllChargeStationsByGroup(Guid groupId)
         {
             var group = await GetGroup(groupId);
             group.ChargeStations = new List<ChargeStation>();

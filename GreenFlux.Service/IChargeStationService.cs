@@ -12,7 +12,7 @@ namespace GreenFlux.Service
         Task<ChargeStationModel> GetChargeStationDetail(Guid groupId, Guid chargeStationId);
         Task<ChargeStationModel> AddChargeStation(Guid groupId, CreateChargeStation chargeStation);
         Task<ChargeStationModel> Update(Guid groupId, Guid chargeStationId, UpdateChargeStation updateChargeStation);
-        void Remove(Guid groupId, Guid chargeStationId);
-        void RemoveAllChargeStationsByGroup(Guid groupId);
+        Task Remove(Guid groupId, Guid chargeStationId);
+        Task RemoveAllChargeStationsByGroup(Guid groupId);
     }
 }
