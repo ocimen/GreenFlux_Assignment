@@ -37,14 +37,14 @@ namespace GreenFlux.Service
             return _mapper.Map<ChargeStationModel>(chargeStation);
         }
 
-        public async Task<ChargeStationModel> AddChargeStation(Guid groupId, CreateChargeStation createChargeStation)
+        public async Task<ChargeStationModel> AddChargeStation(Guid groupId, CreateChargeStation chargeStation)
         {
             var group = await GetGroup(groupId);
-            var chargeStation = new ChargeStation(group, createChargeStation.Name, createChargeStation.Connectors);
+            var newChargeStation = new ChargeStation(group, chargeStation.Name, chargeStation.Connectors);
         
-            group.AddChargeStation(chargeStation);
+            group.AddChargeStation(newChargeStation);
             await _groupRepository.SaveChangesAsync();
-            return _mapper.Map<ChargeStationModel>(chargeStation);
+            return _mapper.Map<ChargeStationModel>(newChargeStation);
         }
 
         public async Task Remove(Guid groupId, Guid chargeStationId)

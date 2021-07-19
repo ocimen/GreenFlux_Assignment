@@ -48,7 +48,7 @@ namespace GreenFlux.Service.UnitTests
             mockGroupRepository.Setup(s => s.Add(It.IsAny<Group>())).Returns(1);
             mockGroupRepository.Setup(s => s.SaveChangesAsync()).ReturnsAsync(0);
 
-            await Assert.ThrowsAsync<Exception>(() => _groupService.Create("Name", 10));
+            await Assert.ThrowsAsync<GreenFluxException>(() => _groupService.Create("Name", 10));
         }
 
         [Fact]

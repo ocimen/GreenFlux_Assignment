@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace GreenFlux.Persistence.Exceptions
 {
+    [Serializable]
     public class GroupCapacityExceedsException : GreenFluxException
     {
         public Guid GroupId { get; }
@@ -16,6 +18,11 @@ namespace GreenFlux.Persistence.Exceptions
             GroupId = groupId;
             Connector = connector;
             Diff = diff;
+        }
+
+        protected GroupCapacityExceedsException(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+
         }
     }
 }

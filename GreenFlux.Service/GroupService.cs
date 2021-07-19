@@ -38,7 +38,7 @@ namespace GreenFlux.Service
 
             var exceptionMessage = "The group could not save";
             _logger.LogError(exceptionMessage);
-            throw new Exception(exceptionMessage);
+            throw new GreenFluxException(exceptionMessage);
         }
 
         public IEnumerable<GroupModel> GetAll()
@@ -82,7 +82,7 @@ namespace GreenFlux.Service
             if (group != null)
             {
                 // Remove related charge stations
-                _chargeStationService.RemoveAllChargeStationsByGroup(id);
+                await _chargeStationService.RemoveAllChargeStationsByGroup(id);
                 _logger.LogInformation($"All charge stations were removed which are under the group of: {group.Id}");
                 
                 // Remove group

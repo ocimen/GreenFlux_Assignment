@@ -342,3 +342,4 @@ healthchecksdb
 
 # Log files
 /GreenFlux.Api/logs.txt
+/.sonarqube

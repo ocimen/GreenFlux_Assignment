@@ -36,8 +36,8 @@ namespace GreenFlux.Api.Middleware
             }
             catch (EntityNotFoundException exception)
             {
-                _logger.LogError("Group Capacity exceeds");
-                await HandleEntityNotFoundException(httpContext, exception);
+                _logger.LogError("Group Capacity exceeds", exception);
+                HandleEntityNotFoundException(httpContext);
             }
             catch (Exception ex)
             {
@@ -78,7 +78,7 @@ namespace GreenFlux.Api.Middleware
             await context.Response.WriteAsync(json);
         }
 
-        private async Task HandleEntityNotFoundException(HttpContext context, EntityNotFoundException exception)
+        private void HandleEntityNotFoundException(HttpContext context)
         {
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.NotFound;

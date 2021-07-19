@@ -19,10 +19,6 @@ namespace GreenFlux.Data
         public DbSet<Group> Group { get; set; }
         public DbSet<ChargeStation> ChargeStation { get; set; }
         
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Product Version", "1.0.0.0");

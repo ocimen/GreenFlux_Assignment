@@ -87,10 +87,11 @@ namespace GreenFlux.Domain
                     continue;
                 }
 
-                return ++i;
+                return i++;
 
             }
-            return ++i;
+
+            return i++;
         }
     }
 }
