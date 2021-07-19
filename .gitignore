@@ -343,3 +343,5 @@ healthchecksdb
 # Log files
 /GreenFlux.Api/logs.txt
 /.sonarqube
+/test/GreenFlux.Service.UnitTests/TestsResults/ocimendere_LT-NLAMS-2061_2021-07-19_13_53_12.trx
+/test/GreenFlux.Service.UnitTests/coverage.opencover.xml
